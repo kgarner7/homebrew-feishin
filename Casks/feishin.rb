@@ -1,7 +1,7 @@
 cask "feishin" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.21.0"
+  version "0.21.2"
 
   sha256 :no_check
 
