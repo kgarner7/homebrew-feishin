@@ -20,6 +20,11 @@ cask "feishin" do
 
   app "Feishin.app"
 
+  # Remove quarantine as postinstall so user doesn't have to do it automatically
+  postflight do
+    system_command "/usr/bin/xattr", args: ["-r", "-d", "com.apple.quarantine", "#{appdir}/Feishin.app"]
+  end
+
   zap trash: [
     "~/Library/Application Support/feishin",
     "~/Library/Logs/feishin",
