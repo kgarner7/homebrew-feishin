@@ -1,12 +1,9 @@
 name: Get latest release version
 
-# Testing purposes
-on: push
-
-# on:
-# workflow_dispatch:
-# schedule:
-#   - cron: "* 0 * * *"
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "* 0 * * *"
 
 jobs:
   update-formula:
