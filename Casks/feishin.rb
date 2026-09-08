@@ -5,8 +5,7 @@ cask "feishin" do
 
   sha256 :no_check
 
-  url "https://github.com/jeffvli/feishin/releases/download/v#{version}/Feishin-#{version}-mac-#{arch}.dmg",
-      verified: "github.com/jeffvli/feishin/"
+  url "https://github.com/jeffvli/feishin/releases/download/v#{version}/Feishin-#{version}-mac-#{arch}.dmg"
   name "Feishin"
   desc "Modern self-hosted music player"
   homepage "https://github.com/jeffvli/feishin"
@@ -16,13 +15,15 @@ cask "feishin" do
     strategy :github_latest
   end
 
-  depends_on macos: :catalina
+  depends_on :macos
 
   app "Feishin.app"
 
-  # Remove quarantine as postinstall so user doesn't have to do it automatically
-  postflight do
-    system_command "/usr/bin/xattr", args: ["-r", "-d", "com.apple.quarantine", "#{appdir}/Feishin.app"]
+  # Remove quarantine after installation so users don't have to do it manually.
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args: ["-r", "-d", "com.apple.quarantine", "{{appdir}}/Feishin.app"],
+        must_succeed: false
   end
 
   zap trash: [
